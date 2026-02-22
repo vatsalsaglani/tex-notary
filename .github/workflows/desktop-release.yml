@@ -11,7 +11,61 @@ permissions:
   contents: write
 
 jobs:
+  preflight:
+    if: >-
+      github.event_name == 'push' ||
+      (
+        github.event_name == 'create' &&
+        github.event.ref_type == 'branch' &&
+        (
+          startsWith(github.event.ref, 'v') || startsWith(github.event.ref, 'version/v')
+        )
+      )
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'create' && github.event.ref || github.ref_name }}
+          fetch-depth: 0
+
+      - name: Resolve version
+        id: version
+        shell: bash
+        run: |
+          RAW_REF="${{ github.event_name == 'create' && github.event.ref || github.ref_name }}"
+          VERSION="${RAW_REF#version/}"
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --include=dev
+
+      - name: Sync desktop package version
+        shell: bash
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          DESKTOP_VERSION="${VERSION#v}"
+          npm version "${DESKTOP_VERSION}" --no-git-tag-version -w @overleaf-lite/desktop
+
+      - name: Bundle desktop tooling for runner OS
+        run: npm run prepare:tools -w @overleaf-lite/desktop
+
+      - name: Build desktop artifacts
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"
+        run: npm run dist:desktop
+
   build:
+    needs: preflight
     if: >-
       github.event_name == 'push' ||
       (
