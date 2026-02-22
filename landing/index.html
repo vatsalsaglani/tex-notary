@@ -203,7 +203,10 @@
             <p class="text-xs font-semibold uppercase tracking-[0.16em] text-ink/58">Desktop Releases</p>
             <h2 class="mt-2 font-display text-4xl leading-none">macOS, Windows, Linux</h2>
             <p class="mt-2 max-w-2xl text-sm leading-7 text-ink/74">
-              Download signed build artifacts directly from GitHub Releases and run TeX Notary locally.
+              Download desktop artifacts directly from GitHub Releases and run TeX Notary locally.
+            </p>
+            <p class="mt-1 max-w-2xl text-sm leading-7 text-ink/68">
+              Offline-first after download: editing, snapshots, and Markdown preview work without internet. PDF compile may need internet once to fetch missing LaTeX packages, then runs offline from cache.
             </p>
           </div>
 
@@ -213,6 +216,34 @@
           >
             Open Releases
           </a>
+        </div>
+
+        <div class="mt-6 grid gap-4 lg:grid-cols-3">
+          <article class="rounded-2xl border border-ink/12 bg-white/74 p-4">
+            <p class="font-semibold text-ink">macOS note</p>
+            <p class="mt-2 text-sm leading-6 text-ink/75">
+              You may see “app is damaged/can’t be opened” until notarization is enabled. This is Gatekeeper behavior for unsigned builds, not malware.
+            </p>
+          </article>
+          <article class="rounded-2xl border border-ink/12 bg-white/74 p-4">
+            <p class="font-semibold text-ink">Windows note</p>
+            <p class="mt-2 text-sm leading-6 text-ink/75">
+              SmartScreen can show “unknown publisher” for unsigned apps. It is a reputation/signing warning, not evidence of data leakage.
+            </p>
+          </article>
+          <article class="rounded-2xl border border-ink/12 bg-white/74 p-4">
+            <p class="font-semibold text-ink">Linux note</p>
+            <p class="mt-2 text-sm leading-6 text-ink/75">
+              Some distros warn on new binaries or require execute permission. That is package trust policy, not a security incident.
+            </p>
+          </article>
+        </div>
+
+        <div class="mt-4 rounded-2xl border border-mint/25 bg-mint/10 px-4 py-3 text-sm leading-6 text-ink/80">
+          <span class="font-semibold text-mint">No hacks, no hidden data sync.</span>
+          TeX Notary runs locally and keeps your project files on your machine.
+          <span class="font-semibold">Why no notarization yet?</span>
+          I am shipping quickly and, yes, I am skipping the Apple Developer $99/year fee for now.
         </div>
       </section>
 
