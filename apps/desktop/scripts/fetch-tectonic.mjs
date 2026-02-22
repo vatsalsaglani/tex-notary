@@ -13,6 +13,20 @@ const executable = process.platform === "win32" ? "tectonic.exe" : "tectonic";
 const outputPath = path.join(outputDir, executable);
 const requestedVersion = process.env.TECTONIC_VERSION?.trim().replace(/^v/, "") || "latest";
 const forceDownload = process.env.TECTONIC_FORCE_DOWNLOAD === "1";
+const githubToken = process.env.GITHUB_TOKEN?.trim() || process.env.GH_TOKEN?.trim() || "";
+
+function githubHeaders() {
+  const headers = {
+    "User-Agent": "tex-notary-desktop-builder",
+    Accept: "application/vnd.github+json"
+  };
+
+  if (githubToken) {
+    headers.Authorization = `Bearer ${githubToken}`;
+  }
+
+  return headers;
+}
 
 function extractArchive(archivePath, extractDir) {
   if (archivePath.endsWith(".zip")) {
@@ -105,7 +119,7 @@ async function fetchReleaseJson() {
   let lastError = null;
   for (const url of urls) {
     const response = await fetch(url, {
-      headers: { "User-Agent": "tex-notary-desktop-builder" }
+      headers: githubHeaders()
     });
 
     if (response.ok) {
