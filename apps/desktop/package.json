@@ -7,7 +7,14 @@
     "name": "Vatsal Saglani",
     "email": "saglanivatsal@gmail.com"
   },
-  "homepage": "https://vatsalsaglani.pages.dev/",
+  "homepage": "https://github.com/vatsalsaglani/tex-notary",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vatsalsaglani/tex-notary.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vatsalsaglani/tex-notary/issues"
+  },
   "type": "module",
   "main": "src/main.mjs",
   "scripts": {
@@ -93,6 +100,15 @@
     },
     "directories": {
       "output": "dist"
-    }
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "vatsalsaglani",
+        "repo": "tex-notary",
+        "channel": "latest",
+        "releaseType": "release"
+      }
+    ]
   }
 }

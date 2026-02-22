@@ -2,6 +2,19 @@
   "name": "tex-notary",
   "private": true,
   "version": "0.1.0",
+  "author": {
+    "name": "Vatsal Saglani",
+    "email": "saglanivatsal@gmail.com",
+    "url": "https://vatsalsaglani.pages.dev/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vatsalsaglani/tex-notary.git"
+  },
+  "homepage": "https://github.com/vatsalsaglani/tex-notary",
+  "bugs": {
+    "url": "https://github.com/vatsalsaglani/tex-notary/issues"
+  },
   "workspaces": [
     "apps/*",
     "packages/*"
