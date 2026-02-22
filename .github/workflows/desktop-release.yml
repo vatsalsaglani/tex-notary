@@ -120,8 +120,8 @@ jobs:
           if git show-ref --verify --quiet "refs/tags/${VERSION}"; then
             echo "Tag ${VERSION} already exists"
           else
-            git tag "${VERSION}"
-            git push origin "${VERSION}"
+            git tag "${VERSION}" "${GITHUB_SHA}"
+            git push origin "refs/tags/${VERSION}:refs/tags/${VERSION}"
           fi
 
       - name: Create GitHub release
