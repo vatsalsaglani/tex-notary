@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TeX Notary</title>
+    <meta
+      name="description"
+      content="TeX Notary is a local-first LaTeX editor with snapshots, Markdown preview, and desktop packaging for macOS, Windows, and Linux."
+    />
+    <link rel="icon" type="image/svg+xml" href="./icon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,600,80,1&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ink: "#37281f",
+              paper: "#fcfaf6",
+              warm: "#f4e7d4",
+              mint: "#177366",
+              mintsoft: "#8cdad3",
+              peach: "#fcd09d"
+            },
+            fontFamily: {
+              display: ["Fraunces", "serif"],
+              body: ["IBM Plex Sans", "sans-serif"],
+              mono: ["IBM Plex Mono", "monospace"]
+            },
+            boxShadow: {
+              glow: "0 24px 80px -40px rgba(23, 115, 102, 0.45)",
+              soft: "0 14px 36px -26px rgba(55, 40, 31, 0.6)"
+            }
+          }
+        }
+      };
+    </script>
+    <style>
+      body {
+        background:
+          radial-gradient(circle at 8% 2%, rgba(252, 208, 157, 0.42), transparent 30%),
+          radial-gradient(circle at 86% 0%, rgba(140, 218, 211, 0.34), transparent 32%),
+          radial-gradient(circle at 50% 100%, rgba(244, 231, 212, 0.62), transparent 44%),
+          #fcfaf6;
+      }
+
+      .grain::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.18;
+        background-image: radial-gradient(rgba(55, 40, 31, 0.32) 0.45px, transparent 0.45px);
+        background-size: 4px 4px;
+      }
+
+      .fade-up {
+        animation: fade-up 620ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+      }
+
+      .fade-delay-1 {
+        animation-delay: 110ms;
+      }
+
+      .fade-delay-2 {
+        animation-delay: 190ms;
+      }
+
+      @keyframes fade-up {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body class="grain min-h-screen font-body text-ink antialiased">
+    <div class="mx-auto w-full max-w-6xl px-6 pb-14 pt-8 md:px-10">
+      <header class="fade-up flex items-center justify-between rounded-3xl border border-ink/10 bg-paper/85 px-5 py-3 shadow-soft backdrop-blur md:px-7">
+        <div class="flex items-center gap-3">
+          <img src="./icon.svg" alt="TeX Notary icon" class="h-10 w-10 rounded-xl border border-ink/10 bg-white/90 p-1" />
+          <div>
+            <p class="font-display text-2xl leading-none">TeX Notary</p>
+            <p class="text-sm text-ink/70">Local-first LaTeX workspace</p>
+          </div>
+        </div>
+        <a
+          href="https://github.com/vatsalsaglani/tex-notary"
+          class="rounded-full border border-ink/15 bg-paper/75 px-4 py-2 text-sm font-medium text-ink transition hover:-translate-y-0.5 hover:border-mint/40 hover:text-mint"
+        >
+          GitHub
+        </a>
+      </header>
+
+      <main class="mt-7 grid items-start gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+        <section class="fade-up fade-delay-1 rounded-3xl border border-ink/10 bg-paper/88 p-7 shadow-glow backdrop-blur md:p-9">
+          <p class="mb-3 inline-flex rounded-full border border-mint/30 bg-mint/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.12em] text-mint">
+            TeX Notary v0.x
+          </p>
+          <h1 class="font-display text-4xl leading-[1.02] md:text-6xl">
+            A focused LaTeX workspace that feels fast, local, and yours.
+          </h1>
+          <p class="mt-5 max-w-2xl text-base leading-7 text-ink/80 md:text-lg">
+            TeX Notary gives you unlimited projects, version snapshots, Markdown preview, and one-click PDF compile in a desktop-first workflow.
+          </p>
+
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a
+              href="https://github.com/vatsalsaglani/tex-notary/releases"
+              class="rounded-full border border-mint bg-mint px-5 py-2.5 text-sm font-semibold text-white transition hover:brightness-110"
+            >
+              Download Releases
+            </a>
+            <a
+              href="https://github.com/vatsalsaglani/tex-notary"
+              class="rounded-full border border-ink/20 bg-white/60 px-5 py-2.5 text-sm font-semibold text-ink transition hover:border-ink/35"
+            >
+              View Source
+            </a>
+          </div>
+
+          <ul class="mt-8 grid gap-3 sm:grid-cols-2">
+            <li class="rounded-2xl border border-ink/10 bg-white/70 p-4">
+              <p class="font-display text-lg">Monaco LaTeX Editor</p>
+              <p class="mt-1 text-sm text-ink/70">Snippets, outline jumps, and keyboard-first flow.</p>
+            </li>
+            <li class="rounded-2xl border border-ink/10 bg-white/70 p-4">
+              <p class="font-display text-lg">Snapshot Timeline</p>
+              <p class="mt-1 text-sm text-ink/70">Save, restore, and keep project history local in SQLite.</p>
+            </li>
+            <li class="rounded-2xl border border-ink/10 bg-white/70 p-4">
+              <p class="font-display text-lg">Responsive Markdown Preview</p>
+              <p class="mt-1 text-sm text-ink/70">Pandoc-backed preview while you edit.</p>
+            </li>
+            <li class="rounded-2xl border border-ink/10 bg-white/70 p-4">
+              <p class="font-display text-lg">Desktop Packaging</p>
+              <p class="mt-1 text-sm text-ink/70">macOS, Windows, and Linux artifacts via GitHub Actions.</p>
+            </li>
+          </ul>
+        </section>
+
+        <aside class="fade-up fade-delay-2 space-y-5">
+          <div class="rounded-3xl border border-ink/10 bg-paper/88 p-6 shadow-soft backdrop-blur">
+            <p class="text-xs uppercase tracking-[0.18em] text-ink/60">Quick Start</p>
+            <pre class="mt-3 overflow-x-auto rounded-2xl border border-ink/10 bg-[#1d1620] p-4 font-mono text-sm text-[#e8e2dc]"><code>npm install
+npm run dev:api
+npm run dev:web
+
+# Desktop
+npm run dev:desktop</code></pre>
+          </div>
+
+          <div class="rounded-3xl border border-ink/10 bg-paper/88 p-6 shadow-soft backdrop-blur">
+            <p class="font-display text-2xl">Deploy Path</p>
+            <p class="mt-2 text-sm leading-6 text-ink/75">
+              This landing page is deployed with GitHub Actions to:
+            </p>
+            <a
+              class="mt-3 inline-flex rounded-xl border border-mint/40 bg-mint/10 px-3 py-2 font-mono text-sm text-mint"
+              href="https://vatsalsaglani.github.io/tex-notary/"
+            >
+              vatsalsaglani.github.io/tex-notary/
+            </a>
+          </div>
+        </aside>
+      </main>
+
+      <footer class="mt-8 text-center text-sm text-ink/60">
+        Built by Vatsal Saglani · <a class="underline decoration-ink/30" href="https://vatsalsaglani.pages.dev/">vatsalsaglani.pages.dev</a>
+      </footer>
+    </div>
+  </body>
+</html>

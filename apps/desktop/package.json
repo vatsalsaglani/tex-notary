@@ -3,7 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "description": "TeX Notary desktop application",
-  "author": "TeX Notary",
+  "author": {
+    "name": "Vatsal Saglani",
+    "email": "saglanivatsal@gmail.com"
+  },
+  "homepage": "https://vatsalsaglani.pages.dev/",
   "type": "module",
   "main": "src/main.mjs",
   "scripts": {
@@ -83,6 +87,7 @@
         "AppImage",
         "deb"
       ],
+      "maintainer": "Vatsal Saglani <saglanivatsal@gmail.com>",
       "category": "Office",
       "artifactName": "TeX-Notary-${version}-${os}-${arch}.${ext}"
     },

@@ -51,6 +51,19 @@ Build installers:
 npm run dist:desktop
 ```
 
+## Landing Page (GitHub Pages)
+
+A static landing page is available under `landing/` (plain HTML + CSS + Tailwind CDN).
+
+Deployment workflow:
+- File: `.github/workflows/landing-pages.yml`
+- Trigger: push to `main`/`master` when `landing/**` changes (or manual dispatch)
+- Target URL: `https://vatsalsaglani.github.io/tex-notary/`
+
+One-time GitHub setting:
+1. Repository Settings -> Pages.
+2. Source -> **GitHub Actions**.
+
 ## Common Troubleshooting
 
 - `better-sqlite3` ABI mismatch (`NODE_MODULE_VERSION` errors):
