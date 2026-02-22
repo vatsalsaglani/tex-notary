@@ -1,0 +1,389 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 36 43% 96%;
+    --foreground: 28 29% 17%;
+    --card: 42 45% 98%;
+    --card-foreground: 28 29% 17%;
+    --popover: 42 45% 98%;
+    --popover-foreground: 28 29% 17%;
+    --primary: 169 67% 27%;
+    --primary-foreground: 48 100% 98%;
+    --secondary: 41 27% 90%;
+    --secondary-foreground: 26 20% 27%;
+    --muted: 41 22% 91%;
+    --muted-foreground: 24 12% 44%;
+    --accent: 32 68% 70%;
+    --accent-foreground: 28 29% 17%;
+    --danger: 2 75% 56%;
+    --warning: 34 95% 48%;
+    --success: 152 47% 34%;
+    --border: 33 31% 79%;
+    --input: 33 31% 79%;
+    --ring: 169 67% 27%;
+    --shadow: 34 28% 20%;
+    --highlight: 0 0% 100%;
+  }
+
+  .theme-dark {
+    --background: 222 23% 13%;
+    --foreground: 213 28% 92%;
+    --card: 221 19% 17%;
+    --card-foreground: 213 28% 92%;
+    --popover: 221 19% 17%;
+    --popover-foreground: 213 28% 92%;
+    --primary: 169 56% 46%;
+    --primary-foreground: 222 40% 12%;
+    --secondary: 220 15% 21%;
+    --secondary-foreground: 215 20% 88%;
+    --muted: 220 13% 20%;
+    --muted-foreground: 219 12% 68%;
+    --accent: 33 43% 26%;
+    --accent-foreground: 34 44% 91%;
+    --danger: 2 75% 62%;
+    --warning: 39 96% 56%;
+    --success: 152 45% 54%;
+    --border: 219 14% 31%;
+    --input: 219 14% 31%;
+    --ring: 169 58% 50%;
+    --shadow: 221 67% 3%;
+    --highlight: 214 25% 90%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body,
+  #root {
+    @apply h-full;
+  }
+
+  body {
+    @apply bg-background font-body text-foreground antialiased;
+    background-image:
+      radial-gradient(circle at 12% 0%, hsl(33 84% 79% / 0.5), transparent 32%),
+      radial-gradient(circle at 84% 4%, hsl(177 42% 68% / 0.34), transparent 35%),
+      radial-gradient(circle at 50% 100%, hsl(37 55% 74% / 0.3), transparent 44%);
+    background-size: 160% 160%;
+    background-attachment: fixed;
+    animation: gradient-pan 30s ease infinite;
+    transition: background-color 260ms ease, color 220ms ease;
+  }
+
+  .theme-dark body {
+    background-image:
+      radial-gradient(circle at 14% -8%, hsl(176 61% 20% / 0.44), transparent 32%),
+      radial-gradient(circle at 86% 0%, hsl(31 58% 21% / 0.36), transparent 34%),
+      radial-gradient(circle at 50% 108%, hsl(232 35% 20% / 0.62), transparent 46%);
+  }
+}
+
+@keyframes gradient-pan {
+  0% {
+    background-position: 0% 45%;
+  }
+  50% {
+    background-position: 100% 55%;
+  }
+  100% {
+    background-position: 0% 45%;
+  }
+}
+
+@layer components {
+  .window-native-chrome {
+    -webkit-app-region: drag;
+    background: linear-gradient(
+      180deg,
+      hsl(var(--card) / 0.95) 0%,
+      hsl(var(--card) / 0.86) 58%,
+      hsl(var(--card) / 0.7) 100%
+    );
+    border-bottom: 1px solid hsl(var(--border) / 0.74);
+    box-shadow:
+      0 1px 0 hsl(var(--highlight) / 0.54) inset,
+      0 14px 24px -18px hsl(var(--shadow) / 0.5);
+    backdrop-filter: blur(14px);
+  }
+
+  .theme-dark .window-native-chrome {
+    background: linear-gradient(
+      180deg,
+      hsl(var(--card) / 0.92) 0%,
+      hsl(var(--card) / 0.84) 56%,
+      hsl(var(--card) / 0.68) 100%
+    );
+    border-bottom-color: hsl(var(--highlight) / 0.18);
+    box-shadow:
+      0 1px 0 hsl(var(--highlight) / 0.1) inset,
+      0 16px 24px -18px hsl(222 68% 2% / 0.8);
+  }
+
+  .grain-layer {
+    background-image: radial-gradient(hsl(var(--shadow) / 0.08) 0.55px, transparent 0.55px);
+    background-size: 5px 5px;
+  }
+
+  .glass-panel {
+    @apply rounded-[1.25rem] border backdrop-blur-2xl;
+    background: hsl(var(--card) / 0.62);
+    border-color: hsl(var(--border) / 0.7);
+    box-shadow:
+      0 1px 0 hsl(var(--highlight) / 0.64) inset,
+      0 -1px 0 hsl(var(--shadow) / 0.14) inset,
+      0 22px 54px -38px hsl(var(--shadow) / 0.5);
+  }
+
+  .theme-dark .glass-panel {
+    background: hsl(var(--card) / 0.54);
+    border-color: hsl(var(--highlight) / 0.14);
+    box-shadow:
+      0 1px 0 hsl(var(--highlight) / 0.12) inset,
+      0 -1px 0 hsl(var(--shadow) / 0.36) inset,
+      0 24px 58px -40px hsl(222 66% 2% / 0.78);
+  }
+
+  .markdown-preview {
+    @apply px-4 py-4 lg:px-5;
+  }
+
+  .markdown-canvas {
+    @apply mx-auto w-full max-w-[800px] rounded-2xl border px-5 py-6 text-[0.98rem] leading-7 text-foreground lg:px-8 lg:py-8;
+    background: hsl(var(--background) / 0.8);
+    border-color: hsl(var(--border) / 0.72);
+    box-shadow:
+      0 1px 0 hsl(var(--highlight) / 0.54) inset,
+      0 26px 56px -44px hsl(var(--shadow) / 0.45);
+  }
+
+  .theme-dark .markdown-canvas {
+    background: hsl(var(--card) / 0.55);
+    border-color: hsl(var(--highlight) / 0.16);
+    box-shadow:
+      0 1px 0 hsl(var(--highlight) / 0.1) inset,
+      0 20px 44px -36px hsl(220 70% 2% / 0.8);
+  }
+
+  .markdown-canvas h1,
+  .markdown-canvas h2,
+  .markdown-canvas h3,
+  .markdown-canvas h4 {
+    @apply font-display;
+    margin-top: 1.8rem;
+    margin-bottom: 0.9rem;
+    line-height: 1.25;
+  }
+
+  .markdown-canvas h1 {
+    font-size: 2.08rem;
+  }
+
+  .markdown-canvas h2 {
+    font-size: 1.45rem;
+  }
+
+  .markdown-canvas h3 {
+    font-size: 1.18rem;
+  }
+
+  .markdown-canvas p {
+    margin: 0 0 0.9rem;
+    text-align: left;
+  }
+
+  .markdown-canvas ul {
+    margin: 0.55rem 0 1rem;
+    list-style: disc;
+    padding-left: 1.35rem;
+  }
+
+  .markdown-canvas ol {
+    margin: 0.55rem 0 1rem;
+    list-style: decimal;
+    padding-left: 1.35rem;
+  }
+
+  .markdown-canvas ul ul {
+    list-style: circle;
+  }
+
+  .markdown-canvas ul ul ul {
+    list-style: square;
+  }
+
+  .markdown-canvas li {
+    margin-bottom: 0.2rem;
+  }
+
+  .markdown-canvas li::marker {
+    color: hsl(var(--primary));
+  }
+
+  .markdown-canvas pre,
+  .markdown-canvas code {
+    font-family: "SF Mono", Menlo, Monaco, monospace;
+  }
+
+  .markdown-canvas pre {
+    @apply overflow-x-auto rounded-xl border px-3 py-2 text-[0.92rem];
+    border-color: hsl(var(--border) / 0.64);
+    background: hsl(var(--card) / 0.75);
+  }
+
+  .markdown-canvas code {
+    @apply rounded-md px-1.5 py-0.5 text-[0.9em];
+    background: hsl(var(--muted) / 0.74);
+  }
+
+  .theme-dark .markdown-canvas code {
+    background: hsl(var(--muted) / 0.9);
+  }
+
+  .markdown-canvas pre code {
+    @apply bg-transparent p-0;
+  }
+
+  .markdown-canvas table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+  }
+
+  .markdown-canvas th,
+  .markdown-canvas td {
+    border: 1px solid hsl(var(--border));
+    padding: 0.45rem 0.55rem;
+  }
+
+  .markdown-canvas th {
+    @apply bg-muted/60 text-left;
+  }
+
+  .markdown-canvas hr {
+    @apply my-5;
+    border-color: hsl(var(--border) / 0.7);
+  }
+
+  .markdown-canvas blockquote {
+    @apply border-l-2 border-primary/45 pl-3 italic text-muted-foreground;
+  }
+
+  .markdown-canvas a {
+    color: hsl(var(--primary));
+    text-decoration: underline;
+    text-decoration-color: hsl(var(--primary) / 0.45);
+    text-underline-offset: 2px;
+  }
+
+  .markdown-canvas .center {
+    margin-bottom: 1.4rem;
+    border-bottom: 1px solid hsl(var(--border));
+    padding-bottom: 0.95rem;
+    text-align: center;
+  }
+
+  .markdown-canvas .center p {
+    margin: 0 auto 0.45rem;
+    max-width: 64ch;
+    font-size: 0.96rem;
+    line-height: 1.45;
+  }
+
+  .markdown-canvas .center p:first-child {
+    font-size: 0.96rem;
+    font-weight: 400;
+  }
+
+  .markdown-canvas .center p:first-child > strong:first-of-type {
+    display: block;
+    margin-bottom: 0.24rem;
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: clamp(1.85rem, 1.4vw + 1.15rem, 2.45rem);
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    line-height: 1.08;
+  }
+
+  .markdown-canvas .center p:first-child > em {
+    display: block;
+    margin-bottom: 0.42rem;
+    color: hsl(var(--muted-foreground));
+    font-size: clamp(0.96rem, 0.5vw + 0.8rem, 1.08rem);
+    font-style: italic;
+    line-height: 1.35;
+  }
+
+  .markdown-canvas .center p:first-child br {
+    display: block;
+    content: "";
+    margin-top: 0.18rem;
+  }
+
+  .markdown-canvas .center a {
+    color: hsl(var(--foreground));
+    text-decoration: none;
+    border-bottom: 1px dotted hsl(var(--border));
+  }
+
+  .markdown-canvas .center a:hover {
+    color: hsl(var(--primary));
+    border-bottom-color: hsl(var(--primary) / 0.55);
+  }
+}
+
+@layer utilities {
+  .monaco-shell[data-editor-theme="dark"] .monaco-editor,
+  .monaco-shell[data-editor-theme="dark"] .monaco-editor-background,
+  .monaco-shell[data-editor-theme="dark"] .margin {
+    background-color: hsl(222 24% 10%) !important;
+  }
+
+  .monaco-shell[data-editor-theme="dark"] .current-line {
+    border-color: hsl(218 19% 24%) !important;
+  }
+
+  .monaco-shell[data-editor-theme="dark"] .monaco-scrollable-element > .scrollbar > .slider {
+    background: hsl(214 28% 49% / 0.5) !important;
+  }
+
+  .monaco-shell[data-editor-theme="light"] .monaco-editor,
+  .monaco-shell[data-editor-theme="light"] .monaco-editor-background,
+  .monaco-shell[data-editor-theme="light"] .margin {
+    background-color: hsl(212 40% 97%) !important;
+  }
+
+  .monaco-shell[data-editor-theme="light"] .current-line {
+    border-color: hsl(214 25% 82%) !important;
+  }
+
+  .monaco-shell[data-editor-theme="light"] .monaco-scrollable-element > .scrollbar > .slider {
+    background: hsl(211 23% 60% / 0.5) !important;
+  }
+
+  .v-scroll::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  .v-scroll::-webkit-scrollbar-thumb {
+    background: hsl(var(--foreground) / 0.25);
+    border: 2px solid transparent;
+    border-radius: 999px;
+    background-clip: content-box;
+  }
+
+  .v-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .theme-dark .v-scroll::-webkit-scrollbar-thumb {
+    background: hsl(var(--foreground) / 0.22);
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+}

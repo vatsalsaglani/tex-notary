@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+apps/*/node_modules/
+
+# Build artifacts
+dist/
+apps/*/dist/
+apps/desktop/bundle/
+apps/web/.vite/
+.vite/
+coverage/
+*.tsbuildinfo
+
+# Runtime data
+.data/*.sqlite
+.data/*.sqlite-*
+.data/tmp/
+.data/pdfs/
+apps/api/.tmp-*.sqlite*
+
+# Bundled tools downloaded at runtime/build time
+apps/desktop/resources/bin/pandoc*
+apps/desktop/resources/bin/tectonic*
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS/editor
+.DS_Store
+.idea/
+.vscode/
+
+# Environment files
+.env
+.env.*
+!.env.example

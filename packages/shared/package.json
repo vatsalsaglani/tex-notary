@@ -1,0 +1,12 @@
+{
+  "name": "@overleaf-lite/shared",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "echo 'shared: nothing to build'",
+    "test": "echo 'shared: no tests'"
+  },
+  "main": "src/index.ts",
+  "types": "src/index.ts"
+}

@@ -1,0 +1,33 @@
+{
+  "name": "@overleaf-lite/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "predev": "node ./scripts/ensure-native.cjs",
+    "dev": "tsx watch src/server.ts",
+    "pretest": "node ./scripts/ensure-native.cjs",
+    "prebuild": "node ./scripts/ensure-native.cjs",
+    "build": "tsc -p tsconfig.json",
+    "prestart": "node ./scripts/ensure-native.cjs",
+    "start": "node dist/server.js",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@overleaf-lite/shared": "0.1.0",
+    "better-sqlite3": "^12.6.2",
+    "cors": "^2.8.5",
+    "express": "^5.2.1",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.3",
+    "@types/node": "^22.10.5",
+    "supertest": "^7.1.4",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

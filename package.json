@@ -1,0 +1,22 @@
+{
+  "name": "tex-notary",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @overleaf-lite/api & npm run dev -w @overleaf-lite/web",
+    "dev:api": "npm run dev -w @overleaf-lite/api",
+    "dev:web": "npm run dev -w @overleaf-lite/web",
+    "dev:desktop": "npm run build -w @overleaf-lite/api && npm run dev -w @overleaf-lite/desktop",
+    "fix:native": "node ./apps/api/scripts/ensure-native.cjs",
+    "prepare:pandoc": "npm run prepare:pandoc -w @overleaf-lite/desktop",
+    "prepare:tectonic": "npm run prepare:tectonic -w @overleaf-lite/desktop",
+    "prepare:tools": "npm run prepare:tools -w @overleaf-lite/desktop",
+    "dist:desktop": "npm run build -w @overleaf-lite/api && npm run build -w @overleaf-lite/web && npm run dist -w @overleaf-lite/desktop",
+    "build": "npm run build -ws",
+    "test": "npm run test -ws"
+  }
+}

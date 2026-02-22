@@ -1,0 +1,93 @@
+{
+  "name": "@overleaf-lite/desktop",
+  "version": "0.1.0",
+  "private": true,
+  "description": "TeX Notary desktop application",
+  "author": "TeX Notary",
+  "type": "module",
+  "main": "src/main.mjs",
+  "scripts": {
+    "build": "echo 'desktop: use npm run dist:desktop for installers'",
+    "test": "echo 'desktop: no tests'",
+    "clean:dist": "node -e \"require('node:fs').rmSync('./dist', { recursive: true, force: true })\"",
+    "prepare:bundle": "node ./scripts/prepare-bundle.mjs",
+    "prepare:pandoc": "node ./scripts/fetch-pandoc.mjs",
+    "prepare:tectonic": "node ./scripts/fetch-tectonic.mjs",
+    "prepare:tools": "npm run prepare:pandoc && npm run prepare:tectonic",
+    "rebuild:native": "node ./scripts/ensure-electron-native.cjs",
+    "dev": "npm run prepare:tools && cross-env ELECTRON_DEV=1 node ./scripts/prepare-bundle.mjs && npm run rebuild:native && cross-env ELECTRON_DEV=1 electron ./src/main.mjs",
+    "dist": "npm run clean:dist && npm run prepare:tools && cross-env CSC_IDENTITY_AUTO_DISCOVERY=false node ./scripts/prepare-bundle.mjs && npm run rebuild:native && cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --publish never",
+    "dist:dir": "npm run clean:dist && npm run prepare:tools && cross-env CSC_IDENTITY_AUTO_DISCOVERY=false node ./scripts/prepare-bundle.mjs && npm run rebuild:native && cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --dir --publish never"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.6.2",
+    "cors": "^2.8.5",
+    "express": "^5.2.1",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "app-builder-bin": "^4.2.0",
+    "cross-env": "^7.0.3",
+    "electron": "32.3.3",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.texnotary.desktop",
+    "productName": "TeX Notary",
+    "electronVersion": "32.3.3",
+    "files": [
+      "src/**/*",
+      "bundle/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "resources/bin",
+        "to": "bin",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "resources/icons",
+        "to": "icons",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "asarUnpack": [
+      "node_modules/better-sqlite3/**/*"
+    ],
+    "npmRebuild": false,
+    "mac": {
+      "icon": "resources/icons/icon.icns",
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "category": "public.app-category.productivity",
+      "artifactName": "TeX-Notary-${version}-${os}-${arch}.${ext}"
+    },
+    "win": {
+      "icon": "resources/icons/icon.ico",
+      "target": [
+        "nsis",
+        "zip"
+      ],
+      "artifactName": "TeX-Notary-${version}-${os}-${arch}.${ext}"
+    },
+    "linux": {
+      "icon": "resources/icons/icon.png",
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "Office",
+      "artifactName": "TeX-Notary-${version}-${os}-${arch}.${ext}"
+    },
+    "directories": {
+      "output": "dist"
+    }
+  }
+}
